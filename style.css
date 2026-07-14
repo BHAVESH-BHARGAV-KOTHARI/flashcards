@@ -1,0 +1,32 @@
+#title-bar
+{
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.hero
+{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.card
+{
+  background-color: aliceblue;
+  display:flex;
+  flex-direction: column;
+  height:350px;
+  width:250px;
+  border-radius: 10px;
+  align-items:center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.card:hover
+{
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
