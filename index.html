@@ -5,24 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlashCards</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+
   <header id="title-bar">
     <h1>Flash Cards</h1>
   </header>
 
-  <div class="hero">
+  <section class="hero">
+
     <div class="card">
-      <h1>BFS</h1>
-      <p>Breadth First Search (BFS) is a graph traversal algorithm that starts from a source node and explores the graph level by level. First, it visits all nodes directly adjacent to the source. Then, it moves on to visit the adjacent nodes of those nodes, and this process continues until all reachable nodes are visited.</p>
+      <div class="card-inner">
+        <div class="card-front">
+          <h1>BFS</h1>
+        </div>
+        <div class="card-back">
+          <p>Breadth First Search (BFS) is a graph traversal algorithm that starts from a source node and explores the graph level by level. First, it visits all nodes directly adjacent to the source. Then, it moves on to visit the adjacent nodes of those nodes, and this process continues until all reachable nodes are visited.</p>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <h1>DFS</h1>
-      <p>In Depth First Search (or DFS) for a graph, we traverse all adjacent vertices one by one. When we traverse an adjacent vertex, we completely finish the traversal of all vertices reachable through that adjacent vertex. To avoid processing a node multiple times, we use a boolean visited array.</p>
+      <div class="card-inner">
+        <div class="card-front">
+          <h1>DFS</h1>
+        </div>
+        <div class="card-back">
+          <p>In Depth First Search (or DFS) for a graph, we traverse all adjacent vertices one by one. When we traverse an adjacent vertex, we completely finish the traversal of all vertices reachable through that adjacent vertex. To avoid processing a node multiple times, we use a boolean visited array.</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  
+  </section>
+
 </body>
 </html>
