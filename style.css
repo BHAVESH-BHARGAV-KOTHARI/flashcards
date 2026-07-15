@@ -1,7 +1,66 @@
+:root {
+    --bg: white;
+    --card: aliceblue;
+    --text: black;
+    --border: black;
+    --hover: rgb(209, 231, 250);
+    --shadow: rgba(0, 0, 0, 0.2);
+
+    --button-bg: #f5f5f5;
+    --button-text: black;
+    --button-border: #bbb;
+}
+
+html.dark {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: white;
+    --border: white;
+    --hover: #333;
+    --shadow: rgba(255, 255, 255, 0.15);
+
+    --button-bg: #2b2b2b;
+    --button-text: white;
+    --button-border: #666;
+}
+
+body
+{
+    margin:0;
+    margin-left:4px;
+    background: var(--bg);
+}
+
 #title-bar
 {
-  border-bottom: 1px solid black;
+  margin: 0px 10px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
   margin-bottom: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#theme-btn
+{
+
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+
+  background: var(--button-bg);
+  color: var(--button-text);
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#theme-btn:hover
+{
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--button-border);
 }
 
 .hero
@@ -13,7 +72,8 @@
 
 .card
 {
-  background-color: aliceblue;
+  background-color: var(--card);
+  color: var(--text);
   display:flex;
   flex-direction: column;
   height:350px;
@@ -27,7 +87,7 @@
 .card:hover
 {
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px var(--shadow);
 }
 
 /* Flip Logic Start */
