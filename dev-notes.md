@@ -9,3 +9,6 @@ preserve-3d : "Keep my children in 3D space instead of flattening them onto me"
 
 inset 0 : Will try to stretch this absolutely positioned element so it touches all four edges of its parent.
 We can also use height and width 100%.
+
+First version of cards are hardcoded in html, but if we want to add new cards, this isnt the correct way. So, we remove all cards from html and then create a data array containing id, question, answer for each card.
+Now, render the cards dynamically from data array to display the cards.
