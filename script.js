@@ -17,7 +17,7 @@ const cardsData =
 //Cards Data End
 
 
-//Render Cards Start//
+//Render Cards Start
 
 const hero = document.getElementById("hero");
 
@@ -44,7 +44,7 @@ function renderCards()
 
 renderCards();
 
-//Render Cards End//
+//Render Cards End
 
 
 // Flip Logic Start
@@ -67,7 +67,7 @@ function updateThemeButton()
 {
     if(root.classList.contains("dark"))
     {
-        theme.textContent="🌑";
+        theme.textContent="🌙";
     }
     else
     {
@@ -81,3 +81,36 @@ theme.addEventListener("click",()=>{
 });
 
 //Theme Logic End
+
+//Form Logic Start
+
+const addCard = document.getElementById("add-card-btn");
+const formContainer = document.getElementById("form-container");
+const cancelBtn = document.getElementById("cancel-btn");
+const form = document.getElementById("add-card-form");
+
+addCard.addEventListener("click",()=>{
+    formContainer.classList.remove("hidden");
+});
+
+cancelBtn.addEventListener("click",()=>{
+    formContainer.classList.add("hidden");
+})
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); // stop page reload
+    const formData = new FormData(form);
+    const newCard = {
+        id: cardsData.length + 1,
+        q: formData.get("question"),
+        ans: formData.get("answer"),
+        topic: formData.get("topic"),
+        difficulty: formData.get("difficulty")
+    };
+    cardsData.push(newCard);
+    helper(newCard); // render just the new card
+    form.reset();
+    formContainer.classList.add("hidden");
+});
+
+//Form Logic End

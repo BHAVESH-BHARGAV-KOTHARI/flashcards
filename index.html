@@ -11,10 +11,33 @@
 
   <header id="title-bar">
     <h1>Flash Cards</h1>
-    <button id="theme-btn">☀️</button>
+    <div id="title-btns">
+      <button id="add-card-btn">Add Card</button>
+      <button id="theme-btn">☀️</button>
+    </div>
   </header>
 
   <section class="hero" id="hero"></section>
+
+  <div id="form-container" class="hidden">
+    <form id="add-card-form">
+      <h1>Add Card</h1>
+      <input name="topic" type="text" placeholder="Topic" required>
+      <input name="question" type="text" placeholder="Question" required>
+      <input name="answer" type="text" placeholder="Answer" required>
+
+      <label>Difficulty:</label>
+      <select name="difficulty">
+        <option>Easy</option>
+        <option>Medium</option>
+        <option>Hard</option>
+      </select>
+
+      <button id="add-btn">Submit</button>
+      <button id="cancel-btn">Cancel</button>
+
+    </form>
+  </div>
 
 
 </body>
