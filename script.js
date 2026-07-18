@@ -75,9 +75,14 @@ deck.addEventListener("click",(e)=>{
 
 
 //Theme Logic Start
-
 const root = document.documentElement;
 const theme = document.getElementById("theme-btn");
+const savedTheme = localStorage.getItem("theme");
+if(savedTheme==="dark")
+{
+    root.classList.add("dark");
+    updateThemeButton();
+};
 
 function updateThemeButton()
 {
@@ -93,6 +98,12 @@ function updateThemeButton()
 
 theme.addEventListener("click",()=>{
     root.classList.toggle("dark");
+
+    if(root.classList.contains("dark"))
+        localStorage.setItem("theme","dark")
+    else 
+        localStorage.setItem("theme","light");
+
     updateThemeButton();
 });
 
