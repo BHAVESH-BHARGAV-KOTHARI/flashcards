@@ -17,3 +17,14 @@ First version of cards are hardcoded in html, but if we want to add new cards, t
 Now, render the cards dynamically from data array to display the cards.
 
 Now we can just add an object in list to add a new card instead of writing a repetitive chunk of html code.
+
+## commit 6
+Initially, we were adding the flip functionality by attaching an event listener to every card using `querySelectorAll()`. This works for the cards that exist when the page loads, but when a new card is added using the **Add Card** feature, that new card doesn't have the event listener attached. As a result, the flip functionality doesn't work for newly created cards.
+
+The solution is to use **event delegation**. Instead of attaching the same event listener to every card, we attach a single event listener to the parent container (`hero`). When a card is clicked, the event bubbles up to the parent, which identifies the clicked card and performs the flip.
+
+This approach has two major advantages:
+
+* It works for both the existing cards and any cards added in the future without attaching new event listeners.
+* It is more memory-efficient because only one event listener is created, regardless of how many cards are in the deck.
+

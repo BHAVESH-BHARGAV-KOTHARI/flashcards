@@ -108,6 +108,7 @@ body
 
 .card-front,.card-back
 {
+  overflow: auto;
   position: absolute;
   inset:0;
   display: flex;
@@ -155,7 +156,7 @@ form
 
   background: var(--card);
   color:var(--text);
-  box-shadow: 0,0,20px,var(--shadow);
+  box-shadow: 0 0 20px var(--shadow);
   padding:25px;
 }
 /* Form Logic End */

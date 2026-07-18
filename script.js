@@ -49,11 +49,15 @@ renderCards();
 
 // Flip Logic Start
 
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-        card.classList.toggle("flipped");
-    });
-});
+
+const deck = document.getElementById("hero");
+deck.addEventListener("click",(e)=>{
+    const card = e.target.closest(".card");
+
+    if(!card) return;
+    
+    card.classList.toggle("flipped");
+})
 
 //Flip Logic End
 
