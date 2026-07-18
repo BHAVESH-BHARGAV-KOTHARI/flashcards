@@ -1,6 +1,6 @@
 //Cards Data Start
 
-const cardsData = 
+const defaultCards = 
 [
     {
         id:1,
@@ -17,11 +17,23 @@ const cardsData =
 //Cards Data End
 
 
+//Save Cards Start
+
+const cardsData = JSON.parse(localStorage.getItem("cards")) || defaultCards;
+
+function saveCards()
+{
+    localStorage.setItem("cards",JSON.stringify(cardsData));
+}
+
+//Save Cards End
+
+
 //Render Cards Start
 
 const hero = document.getElementById("hero");
 
-function helper(card)
+function render(card)
 {
     hero.innerHTML += `
     <div class="card" data-id="${card.id}">
@@ -39,7 +51,7 @@ function helper(card)
 
 function renderCards()
 {
-    cardsData.forEach(card => helper(card));
+    cardsData.forEach(card => render(card));
 }
 
 renderCards();
@@ -112,7 +124,10 @@ form.addEventListener("submit", (e) => {
         difficulty: formData.get("difficulty")
     };
     cardsData.push(newCard);
-    helper(newCard); // render just the new card
+
+    saveCards();
+    render(newCard);
+
     form.reset();
     formContainer.classList.add("hidden");
 });

@@ -36,3 +36,11 @@ Fix: Set the button type explicitly:
 <button type="button" id="cancel-btn">Cancel</button>
 
 This ensures the Cancel button only closes the form and never submits it. It also prevents unintended side effects if more logic (API calls, database updates, etc.) is added to the submit handler in the future.
+
+## commit 8 - persisting cards with localStorage
+Initially, all cards were stored only in the cardsData array. This meant that whenever the page was refreshed, the JavaScript state was reset and any cards added by the user were lost.
+
+To solve this, we use localStorage, which allows data to persist in the browser even after a page refresh or browser restart.
+
+Since localStorage can only store strings, the cardsData array is converted into a JSON string using JSON.stringify() before saving. When the application starts, the stored string is converted back into a JavaScript array using JSON.parse(). If no data exists in localStorage (for example, on the first visit), the application falls back to the default cards.
+
