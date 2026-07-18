@@ -43,7 +43,7 @@ body
   align-items: center;
 }
 
-#title-btns button
+.delete-btn, #title-btns button
 {
 
   padding: 10px 18px;
@@ -57,7 +57,7 @@ body
   transition: 0.3s;
 }
 
-#title-btns button:hover
+.delete-btn:hover, #title-btns button:hover
 {
   transform: scale(1.05);
   box-shadow: 0 0 8px var(--button-border);

@@ -37,6 +37,8 @@ function render(card)
 {
     hero.innerHTML += `
     <div class="card" data-id="${card.id}">
+      <button class="delete-btn">🗑️</button>
+
       <div class="card-inner">
         <div class="card-front">
           <h1>${card.q}</h1>
@@ -109,6 +111,7 @@ theme.addEventListener("click",()=>{
 
 //Theme Logic End
 
+
 //Form Logic Start
 
 const addCard = document.getElementById("add-card-btn");
@@ -144,3 +147,26 @@ form.addEventListener("submit", (e) => {
 });
 
 //Form Logic End
+
+
+//Delete Card Start
+
+//deck is already defined in flip logic
+deck.addEventListener("click",(e)=>{
+
+    if(e.target.classList.contains("delete-btn"))
+    {
+
+        const card = e.target.closest(".card");
+        const id = Number(card.dataset.id);
+
+        const index = cardsData.findIndex(c=>c.id===id)
+
+        cardsData.splice(index,1);
+        saveCards();
+
+        card.remove(); //DOM Method
+    }
+})
+
+//Delete Card End
