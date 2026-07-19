@@ -53,3 +53,7 @@ To avoid this, use `Date.now()` to generate IDs. Since it returns the current ti
 
 > **Fact:** `Date.now()` returns the number of milliseconds elapsed since the Unix epoch (**January 1, 1970, 00:00:00 UTC**).
 
+## commit 13 - fix flex box overflow clipping
+When a flex container uses align-items: center and justify-content: center, oversized content is centered by overflowing equally above and below the container. The portion that extends above the container becomes unreachable because overflow: auto can only scroll from the container's top edge (scrollTop cannot be negative). This makes the top of the content appear clipped.
+
+Remove flexbox centering from the container and instead apply margin: auto to the child element. When the content fits, it remains centered. When it overflows, the auto margins collapse, allowing the content to start at the top so the entire element becomes scrollable without clipping.

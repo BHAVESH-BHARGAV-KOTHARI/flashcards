@@ -43,8 +43,6 @@ function render(card)
     hero.innerHTML += `
     <div class="card" data-id="${card.id}">
       <button class="delete-btn">🗑️</button>
-      <h2>${card.id}</h2>
-
       <div class="card-inner">
         <div class="card-front">
           <h1>${card.q}</h1>
