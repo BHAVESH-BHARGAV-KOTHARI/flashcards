@@ -4,13 +4,17 @@ const defaultCards =
 [
     {
         id:1,
+        topic:"Graphs",
         q:"BFS",
-        ans: "Breadth First Search (BFS) is a graph traversal algorithm that starts from a source node and explores the graph level by level. First, it visits all nodes directly adjacent to the source. Then, it moves on to visit the adjacent nodes of those nodes, and this process continues until all reachable nodes are visited."
+        ans: "Breadth First Search (BFS) is a graph traversal algorithm that starts from a source node and explores the graph level by level. First, it visits all nodes directly adjacent to the source. Then, it moves on to visit the adjacent nodes of those nodes, and this process continues until all reachable nodes are visited.",
+        difficulty:"Easy"
     },
     {
         id:2,
+        topic:"Graphs",
         q: "DFS",
-        ans: "In Depth First Search (or DFS) for a graph, we traverse all adjacent vertices one by one. When we traverse an adjacent vertex, we completely finish the traversal of all vertices reachable through that adjacent vertex. To avoid processing a node multiple times, we use a boolean visited array."
+        ans: "In Depth First Search (or DFS) for a graph, we traverse all adjacent vertices one by one. When we traverse an adjacent vertex, we completely finish the traversal of all vertices reachable through that adjacent vertex. To avoid processing a node multiple times, we use a boolean visited array.",
+        difficulty:"Medium"
     }
 ];
 
@@ -20,6 +24,7 @@ const defaultCards =
 //Save Cards Start
 
 const cardsData = JSON.parse(localStorage.getItem("cards")) || defaultCards;
+let shownCards = cardsData;
 
 function saveCards()
 {
@@ -53,7 +58,8 @@ function render(card)
 
 function renderCards()
 {
-    cardsData.forEach(card => render(card));
+    hero.innerHTML="";
+    shownCards.forEach(card => render(card));
 }
 
 renderCards();
@@ -132,12 +138,14 @@ form.addEventListener("submit", (e) => {
     const formData = new FormData(form);
     const newCard = {
         id: cardsData.length + 1,
+        topic: formData.get("topic"),
         q: formData.get("question"),
         ans: formData.get("answer"),
         topic: formData.get("topic"),
         difficulty: formData.get("difficulty")
     };
     cardsData.push(newCard);
+    loadTopics();
 
     saveCards();
     render(newCard);
@@ -170,3 +178,58 @@ deck.addEventListener("click",(e)=>{
 })
 
 //Delete Card End
+
+
+//Filter State Start
+
+let currentDiff = "All";
+let currentTopic = "All";
+
+function applyFilters()
+{
+    shownCards = cardsData.filter(card =>
+        (currentDiff === "All" || card.difficulty === currentDiff) &&
+        (currentTopic === "All" || card.topic === currentTopic)
+    );
+    renderCards();
+}
+
+//Filter State End
+
+
+//Difficulty Filter Start
+
+const diff = document.getElementById("fetch-diff");
+
+diff.addEventListener("change",()=>{
+    currentDiff = diff.value;
+    applyFilters();
+});
+
+//Difficulty Filter End
+
+
+//Topic Filter Start
+
+const topicSelect = document.getElementById("fetch-topic");
+
+function loadTopics()
+{
+    topicSelect.innerHTML = `<option value="All">All Topics</option>`
+
+    const topics = [...new Set(cardsData.map(card => card.topic))];
+
+    topics.forEach(topic => {
+        topicSelect.innerHTML += `
+        <option value="${topic}">${topic}</option>`;
+    });
+}
+
+loadTopics();
+
+topicSelect.addEventListener("change", () => {
+    currentTopic = topicSelect.value;
+    applyFilters();
+});
+
+//Topic Filter End

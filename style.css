@@ -31,7 +31,7 @@ body
     background: var(--bg);
 }
 
-#title-bar
+#title-bar, #filter-bar
 {
   margin: 0px 10px;
   color: var(--text);
@@ -41,6 +41,11 @@ body
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#filter-bar
+{
+  padding-bottom: 10px;
 }
 
 .delete-btn, #title-btns button
