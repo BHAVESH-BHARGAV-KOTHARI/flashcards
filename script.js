@@ -43,6 +43,7 @@ function render(card)
     hero.innerHTML += `
     <div class="card" data-id="${card.id}">
       <button class="delete-btn">🗑️</button>
+      <h2>${card.id}</h2>
 
       <div class="card-inner">
         <div class="card-front">
@@ -137,11 +138,10 @@ form.addEventListener("submit", (e) => {
     e.preventDefault(); // stop page reload
     const formData = new FormData(form);
     const newCard = {
-        id: cardsData.length + 1,
+        id: Date.now(),
         topic: formData.get("topic"),
         q: formData.get("question"),
         ans: formData.get("answer"),
-        topic: formData.get("topic"),
         difficulty: formData.get("difficulty")
     };
     cardsData.push(newCard);

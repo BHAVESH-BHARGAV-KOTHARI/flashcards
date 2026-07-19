@@ -44,3 +44,12 @@ To solve this, we use localStorage, which allows data to persist in the browser 
 
 Since localStorage can only store strings, the cardsData array is converted into a JSON string using JSON.stringify() before saving. When the application starts, the stored string is converted back into a JavaScript array using JSON.parse(). If no data exists in localStorage (for example, on the first visit), the application falls back to the default cards.
 
+## commit 12 - fix the duplicate id issue
+Initially, I generated each card's `id` using `cardsData.length + 1`. This worked while cards could only be added. For example, if there were 2 cards, the next card would get `id: 3`.
+
+After adding delete functionality, this approach breaks. If card `2` is deleted, the remaining cards have IDs `1` and `3`, but `cardsData.length` is now `2`. Adding a new card assigns `id: 3` again, resulting in **duplicate IDs**.
+
+To avoid this, use `Date.now()` to generate IDs. Since it returns the current timestamp in milliseconds, each newly created card gets a unique ID.
+
+> **Fact:** `Date.now()` returns the number of milliseconds elapsed since the Unix epoch (**January 1, 1970, 00:00:00 UTC**).
+
