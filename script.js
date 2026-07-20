@@ -42,7 +42,10 @@ function render(card)
 {
     hero.innerHTML += `
     <div class="card" data-id="${card.id}">
-      <button class="delete-btn">🗑️</button>
+      <div class="card-btns">
+        <button class="delete-btn">🗑️</button>
+        <button class="edit-btn">✏️</button>
+      </div>
       <div class="card-inner">
         <div class="card-front">
           <h1>${card.q}</h1>
@@ -135,19 +138,32 @@ cancelBtn.addEventListener("click",()=>{
 form.addEventListener("submit", (e) => {
     e.preventDefault(); // stop page reload
     const formData = new FormData(form);
-    const newCard = {
-        id: Date.now(),
-        topic: formData.get("topic"),
-        q: formData.get("question"),
-        ans: formData.get("answer"),
-        difficulty: formData.get("difficulty")
-    };
-    cardsData.push(newCard);
-    loadTopics();
 
+    if(editingId !== null)
+    {
+        const cardObj = cardsData.find(c => c.id === editingId);
+        cardObj.topic = formData.get("topic");
+        cardObj.q = formData.get("question");
+        cardObj.ans = formData.get("answer");
+        cardObj.difficulty = formData.get("difficulty");
+        editingId = null;      
+    }
+
+    else
+    {
+        const newCard = {
+            id: Date.now(),
+            topic: formData.get("topic"),
+            q: formData.get("question"),
+            ans: formData.get("answer"),
+            difficulty: formData.get("difficulty")
+        };
+        cardsData.push(newCard);
+    }   
+    
     saveCards();
-    render(newCard);
-
+    loadTopics();
+    applyFilters();
     form.reset();
     formContainer.classList.add("hidden");
 });
@@ -176,6 +192,28 @@ deck.addEventListener("click",(e)=>{
 })
 
 //Delete Card End
+
+//Edit Card Start
+
+let editingId = null;
+deck.addEventListener("click",(e)=>{
+    if(e.target.classList.contains("edit-btn"))
+    {
+        const card = e.target.closest(".card");
+        const id = Number(card.dataset.id);
+        const cardObj = cardsData.find(c=> c.id===id);
+
+        console.log(cardObj);
+        form.elements["topic"].value = cardObj.topic;
+        form.elements["question"].value = cardObj.q;
+        form.elements["answer"].value = cardObj.ans;
+        form.elements["difficulty"].value = cardObj.difficulty;
+        editingId = id;
+        formContainer.classList.remove("hidden");
+    }
+});
+
+//Edit Card End
 
 
 //Filter State Start

@@ -48,7 +48,7 @@ body
   padding-bottom: 10px;
 }
 
-.delete-btn, #title-btns button
+.card-btns button, #title-btns button
 {
 
   padding: 10px 18px;
@@ -62,7 +62,7 @@ body
   transition: 0.3s;
 }
 
-.delete-btn:hover, #title-btns button:hover
+.card-btns button:hover, #title-btns button:hover
 {
   transform: scale(1.05);
   box-shadow: 0 0 8px var(--button-border);
