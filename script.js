@@ -74,6 +74,7 @@ renderCards();
 
 const deck = document.getElementById("hero");
 deck.addEventListener("click",(e)=>{
+    if(e.target.closest("button")) return;
     const card = e.target.closest(".card");
 
     if(!card) return;
@@ -203,7 +204,7 @@ deck.addEventListener("click",(e)=>{
         const id = Number(card.dataset.id);
         const cardObj = cardsData.find(c=> c.id===id);
 
-        console.log(cardObj);
+        //console.log(cardObj);
         form.elements["topic"].value = cardObj.topic;
         form.elements["question"].value = cardObj.q;
         form.elements["answer"].value = cardObj.ans;
