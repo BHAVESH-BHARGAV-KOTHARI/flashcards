@@ -221,10 +221,12 @@ deck.addEventListener("click",(e)=>{
 
 let currentDiff = "All";
 let currentTopic = "All";
+let currentSearch = "";
 
 function applyFilters()
 {
     shownCards = cardsData.filter(card =>
+        (currentSearch === "" || card.q.toLowerCase().includes(currentSearch))&&
         (currentDiff === "All" || card.difficulty === currentDiff) &&
         (currentTopic === "All" || card.topic === currentTopic)
     );
@@ -270,3 +272,16 @@ topicSelect.addEventListener("change", () => {
 });
 
 //Topic Filter End
+
+//Search Card Start
+
+const search = document.getElementById("search");
+
+search.addEventListener("input",(e)=>{
+    currentSearch = e.target.value.toLowerCase();
+    //console.log(e.target.value);
+
+    applyFilters();
+});
+
+//Search Card End
